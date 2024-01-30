@@ -1,5 +1,54 @@
-.block{
-    width: 150px;
-    height: 250px;
-    background-color: aqua;
-}
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+} 
+  
+body { 
+    height: 100vh; 
+    width: 100vw; 
+    background-image: linear-gradient( 
+            to top, aqua, purple); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+} 
+  
+.board { 
+    height: 85vh; 
+    width: 80vw; 
+    background-image: linear-gradient( 
+            to right, purple, aqua); 
+    border-radius: 3px; 
+    border-style:double;
+    border-width: 2px;
+    border-color: gray;
+}  
+  
+  
+.player_score { 
+    height: 50px; 
+    width: 50px; 
+    color: white; 
+    position: fixed; 
+    left: 30vw; 
+    margin-top: 30px; 
+} 
+  
+.bot_score { 
+    height: 50px; 
+    width: 50px; 
+    color: white; 
+    position: fixed; 
+    left: 70vw; 
+    margin-top: 30px; 
+} 
+  
+.text { 
+    position: center; 
+    height: 10vh; 
+    width: 20vw; 
+    color: #8000FF; 
+    text-decoration-style: dashed;
+    margin: 30px auto auto auto; 
+} 
