@@ -25,6 +25,31 @@ body {
     border-color: gray;
 }  
 
+.boost {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: rgb(255, 106, 0); 
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(255, 1, 141, 0.8); 
+    animation: pulse 1.5s ease-in-out infinite; 
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.8);
+    }
+}
+
+
+
 .ball { 
     height: 30px; 
     width: 30px; 
@@ -110,7 +135,7 @@ body {
     position: center; 
     height: 10vh; 
     width: 20vw; 
-    color: #8000FF; 
+    color: #ffffff; 
     text-decoration-style: dashed;
-    margin: 30px auto auto auto; 
+    margin: 40px auto auto auto; 
 } 

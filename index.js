@@ -19,6 +19,70 @@ let dy = Math.floor(Math.random() * 4) + 3;
 let dxd = Math.floor(Math.random() * 2); 
 let dyd = Math.floor(Math.random() * 2); 
 
+
+let boost = document.createElement('div');
+let isBoostActive = false;
+
+
+function createBoost() {
+    const boost = document.createElement('div');
+    boost.classList.add('boost');
+    boost.style.top = Math.floor(Math.random() * (board.clientHeight - 20)) + 'px';
+    boost.style.left = Math.floor(Math.random() * (board.clientWidth - 20)) + 'px';
+    board.appendChild(boost);
+
+    let boostActivated = false;
+
+function checkCollision() {
+    const boostRect = boost.getBoundingClientRect();
+    const ballRect = ball.getBoundingClientRect();
+
+    if (
+        boostRect.left < ballRect.right &&
+        boostRect.right > ballRect.left &&
+        boostRect.top < ballRect.bottom &&
+        boostRect.bottom > ballRect.top
+    ) {
+        boost.style.visibility = 'hidden';
+        if (!boostActivated) {
+            activateBoost();
+            boostActivated = true;
+            setTimeout(() => {
+                boostActivated = false; // Снимаем флаг через 1 секунду
+            }, 3000);
+        }
+    }
+}
+
+setInterval(checkCollision, 100);
+
+// Функция для активации буста
+function activateBoost() {
+    if (dxd === 1) {
+        score_2.innerHTML = +score_2.innerHTML + 1;
+    } else {
+        score_1.innerHTML = +score_1.innerHTML + 1;
+    }
+}
+
+    
+    
+    
+
+}
+
+setInterval(createBoost, 10000);
+
+
+function removeBoosts() {
+    const boosts = document.querySelectorAll('.boost');
+    boosts.forEach(boost => {
+        boost.remove();
+    });
+}
+
+
+
 document.addEventListener('keydown', (e) => { 
     if (e.key == 'Enter') { 
         gameState = gameState == 'start' ? 'play' : 'start'; 
@@ -113,6 +177,7 @@ function moveBall(dx, dy, dxd, dyd) {
 
         ball_coord = initial_ball_coord; 
         ball.style = initial_ball.style; 
+        removeBoosts();
         message.innerHTML = 'Нажмите "Enter"!'; 
         message.style.left = 38 + 'vw'; 
         return; 
@@ -120,7 +185,9 @@ function moveBall(dx, dy, dxd, dyd) {
     ball.style.top = ball_coord.top + dy * (dyd == 0 ? -1 : 1) + 'px'; 
     ball.style.left = ball_coord.left + dx * (dxd == 0 ? -1 : 1) + 'px'; 
     ball_coord = ball.getBoundingClientRect(); 
+    
     requestAnimationFrame(() => { 
         moveBall(dx, dy, dxd, dyd); 
     }); 
+    checkBoostCollision();
 } 
