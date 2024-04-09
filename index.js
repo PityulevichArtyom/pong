@@ -189,5 +189,4 @@ function moveBall(dx, dy, dxd, dyd) {
     requestAnimationFrame(() => { 
         moveBall(dx, dy, dxd, dyd); 
     }); 
-    checkBoostCollision();
 } 
